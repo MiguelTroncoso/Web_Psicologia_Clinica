@@ -29,17 +29,21 @@ export default async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isLogin = request.nextUrl.pathname.startsWith("/login");
+  const { pathname } = request.nextUrl;
+  const isLogin = pathname.startsWith("/login");
+  const isPanel = pathname.startsWith("/panel");
 
-  if (!user && !isLogin) {
+  // Solo el panel de gestión requiere sesión. El sitio público es abierto.
+  if (!user && isPanel) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
+  // Si ya inició sesión y vuelve al login, lo mandamos al panel.
   if (user && isLogin) {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    url.pathname = "/panel";
     return NextResponse.redirect(url);
   }
 

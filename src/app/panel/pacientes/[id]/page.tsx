@@ -111,7 +111,7 @@ export default function PatientDetailPage() {
   return (
     <div>
       <button
-        onClick={() => router.push("/pacientes")}
+        onClick={() => router.push("/panel/pacientes")}
         className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-teal-700"
       >
         <ArrowLeft size={16} /> Pacientes

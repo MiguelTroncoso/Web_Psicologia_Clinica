@@ -15,6 +15,7 @@ import { EmptyState, Spinner } from "@/components/ui";
 import {
   CalendarDays,
   CreditCard,
+  Inbox,
   MessageCircle,
   Users,
   Video,
@@ -27,12 +28,14 @@ export default function DashboardPage() {
   const [patientCount, setPatientCount] = useState(0);
   const [monthIncome, setMonthIncome] = useState(0);
   const [settings, setSettings] = useState<Settings | null>(null);
+  const [newRequests, setNewRequests] = useState(0);
 
   const load = useCallback(async () => {
     const supabase = createClient();
     const now = new Date();
 
-    const [apptsRes, patientsRes, paymentsRes, settingsRes] = await Promise.all([
+    const [apptsRes, patientsRes, paymentsRes, settingsRes, requestsRes] =
+      await Promise.all([
       supabase
         .from("appointments")
         .select("*, patients(full_name, phone)")
@@ -48,6 +51,10 @@ export default function DashboardPage() {
         .gte("paid_at", format(startOfMonth(now), "yyyy-MM-dd"))
         .lte("paid_at", format(endOfMonth(now), "yyyy-MM-dd")),
       supabase.from("settings").select("*").maybeSingle(),
+      supabase
+        .from("appointment_requests")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "nueva"),
     ]);
 
     setTodayAppointments((apptsRes.data as Appointment[]) ?? []);
@@ -56,6 +63,7 @@ export default function DashboardPage() {
       (paymentsRes.data ?? []).reduce((sum, p) => sum + Number(p.amount), 0)
     );
     setSettings(settingsRes.data);
+    setNewRequests(requestsRes.count ?? 0);
     setLoading(false);
   }, []);
 
@@ -78,25 +86,38 @@ export default function DashboardPage() {
         {formatDayLabel(new Date())}
       </p>
 
+      {newRequests > 0 && (
+        <Link
+          href="/panel/solicitudes"
+          className="mb-6 flex items-center gap-3 rounded-xl border border-teal-200 bg-teal-50 p-4 text-teal-800 transition-colors hover:bg-teal-100"
+        >
+          <Inbox size={20} className="shrink-0" />
+          <span className="text-sm font-medium">
+            Tienes {newRequests} solicitud{newRequests === 1 ? "" : "es"} de hora
+            nueva{newRequests === 1 ? "" : "s"} desde tu sitio web.
+          </span>
+        </Link>
+      )}
+
       {/* Estadísticas */}
       <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <StatCard
           icon={<CalendarDays size={20} />}
           label="Citas hoy"
           value={String(active.length)}
-          href="/agenda"
+          href="/panel/agenda"
         />
         <StatCard
           icon={<Users size={20} />}
           label="Pacientes"
           value={String(patientCount)}
-          href="/pacientes"
+          href="/panel/pacientes"
         />
         <StatCard
           icon={<CreditCard size={20} />}
           label="Ingresos del mes"
           value={formatCLP(monthIncome)}
-          href="/pagos"
+          href="/panel/pagos"
         />
       </div>
 

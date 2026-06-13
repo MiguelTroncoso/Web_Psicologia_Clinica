@@ -71,6 +71,21 @@ create table public.settings (
   session_price numeric not null default 0
 );
 
+-- Solicitudes de hora enviadas desde el sitio web público (sin login).
+create table public.appointment_requests (
+  id uuid primary key default gen_random_uuid(),
+  full_name text not null,
+  phone text,
+  email text,
+  preferred_date text,
+  modality text not null default 'presencial'
+    check (modality in ('presencial', 'online')),
+  message text,
+  status text not null default 'nueva'
+    check (status in ('nueva', 'contactada', 'agendada', 'descartada')),
+  created_at timestamptz not null default now()
+);
+
 -- ============ ÍNDICES ============
 
 create index idx_appointments_starts_at on public.appointments (user_id, starts_at);
@@ -79,6 +94,7 @@ create index idx_sessions_patient on public.sessions (patient_id, session_date d
 create index idx_payments_patient on public.payments (patient_id);
 create index idx_payments_paid_at on public.payments (user_id, paid_at);
 create index idx_reports_patient on public.reports (patient_id);
+create index idx_requests_created on public.appointment_requests (created_at desc);
 
 -- ============ SEGURIDAD (RLS) ============
 -- Cada usuario solo ve y modifica sus propios datos.
@@ -89,6 +105,7 @@ alter table public.sessions enable row level security;
 alter table public.payments enable row level security;
 alter table public.reports enable row level security;
 alter table public.settings enable row level security;
+alter table public.appointment_requests enable row level security;
 
 create policy "own patients" on public.patients
   for all using (user_id = auth.uid()) with check (user_id = auth.uid());
@@ -102,3 +119,14 @@ create policy "own reports" on public.reports
   for all using (user_id = auth.uid()) with check (user_id = auth.uid());
 create policy "own settings" on public.settings
   for all using (user_id = auth.uid()) with check (user_id = auth.uid());
+
+-- Solicitudes: cualquier visitante (anon) puede CREAR una solicitud desde la web,
+-- pero solo la profesional autenticada puede leerlas, actualizarlas o borrarlas.
+create policy "public can request" on public.appointment_requests
+  for insert to anon, authenticated with check (true);
+create policy "owner reads requests" on public.appointment_requests
+  for select to authenticated using (true);
+create policy "owner updates requests" on public.appointment_requests
+  for update to authenticated using (true) with check (true);
+create policy "owner deletes requests" on public.appointment_requests
+  for delete to authenticated using (true);

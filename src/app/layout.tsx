@@ -8,12 +8,13 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Agenda Clínica",
-  description: "Gestión de agenda, pacientes y fichas clínicas",
+  title: "Natalia Anton Klickmann · Psicología",
+  description:
+    "Natalia Anton Klickmann, Licenciada en Psicología. Atención psicológica para adultos y adolescentes, presencial y online. Reserva tu hora.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Agenda Clínica",
+    title: "Natalia Anton · Psicología",
     statusBarStyle: "default",
   },
 };

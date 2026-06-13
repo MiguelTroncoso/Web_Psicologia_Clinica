@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Field, PrimaryButton, inputClass } from "@/components/ui";
@@ -31,7 +32,7 @@ export default function LoginPage() {
       );
       return;
     }
-    router.push("/");
+    router.push("/panel");
     router.refresh();
   }
 
@@ -75,6 +76,13 @@ export default function LoginPage() {
             {loading ? "Ingresando…" : "Ingresar"}
           </PrimaryButton>
         </form>
+
+        <Link
+          href="/"
+          className="mt-5 block text-center text-xs text-zinc-400 hover:text-zinc-600"
+        >
+          ← Volver al sitio web
+        </Link>
       </div>
     </main>
   );

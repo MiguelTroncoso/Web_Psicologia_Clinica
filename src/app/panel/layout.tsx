@@ -8,17 +8,19 @@ import {
   CreditCard,
   HeartPulse,
   Home,
+  Inbox,
   LogOut,
   Settings,
   Users,
 } from "lucide-react";
 
 const NAV = [
-  { href: "/", label: "Inicio", icon: Home },
-  { href: "/agenda", label: "Agenda", icon: CalendarDays },
-  { href: "/pacientes", label: "Pacientes", icon: Users },
-  { href: "/pagos", label: "Pagos", icon: CreditCard },
-  { href: "/ajustes", label: "Ajustes", icon: Settings },
+  { href: "/panel", label: "Inicio", icon: Home },
+  { href: "/panel/agenda", label: "Agenda", icon: CalendarDays },
+  { href: "/panel/solicitudes", label: "Solicitudes", icon: Inbox },
+  { href: "/panel/pacientes", label: "Pacientes", icon: Users },
+  { href: "/panel/pagos", label: "Pagos", icon: CreditCard },
+  { href: "/panel/ajustes", label: "Ajustes", icon: Settings },
 ];
 
 export default function AppLayout({
@@ -30,7 +32,7 @@ export default function AppLayout({
   const router = useRouter();
 
   function isActive(href: string) {
-    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return href === "/panel" ? pathname === "/panel" : pathname.startsWith(href);
   }
 
   async function signOut() {

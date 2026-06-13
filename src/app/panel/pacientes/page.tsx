@@ -82,7 +82,7 @@ export default function PatientsPage() {
           {filtered.map((p) => (
             <li key={p.id}>
               <Link
-                href={`/pacientes/${p.id}`}
+                href={`/panel/pacientes/${p.id}`}
                 className="flex items-center gap-4 px-4 py-3.5 hover:bg-teal-50/50"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal-100 font-semibold text-teal-700">

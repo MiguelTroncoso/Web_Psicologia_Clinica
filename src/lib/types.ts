@@ -62,6 +62,34 @@ export interface Report {
   created_at: string;
 }
 
+export type RequestStatus = "nueva" | "contactada" | "agendada" | "descartada";
+
+export interface AppointmentRequest {
+  id: string;
+  full_name: string;
+  phone: string | null;
+  email: string | null;
+  preferred_date: string | null;
+  modality: Modality;
+  message: string | null;
+  status: RequestStatus;
+  created_at: string;
+}
+
+export const REQUEST_STATUS_LABELS: Record<RequestStatus, string> = {
+  nueva: "Nueva",
+  contactada: "Contactada",
+  agendada: "Agendada",
+  descartada: "Descartada",
+};
+
+export const REQUEST_STATUS_COLORS: Record<RequestStatus, string> = {
+  nueva: "bg-teal-100 text-teal-800",
+  contactada: "bg-amber-100 text-amber-800",
+  agendada: "bg-emerald-100 text-emerald-800",
+  descartada: "bg-zinc-200 text-zinc-600",
+};
+
 export interface Settings {
   user_id: string;
   professional_name: string;

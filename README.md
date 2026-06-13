@@ -1,8 +1,21 @@
-# Agenda Clínica 🩺
+# Natalia Anton Klickmann · Psicología 🩺
 
-Software de gestión para consulta de psicología: agenda de citas, fichas de pacientes, notas de sesión, informes en PDF, recordatorios por WhatsApp y registro de pagos. Funciona en celular, tablet y computador (se puede instalar como app desde el navegador).
+Proyecto con dos partes que conviven en la misma aplicación:
 
-## Funcionalidades
+1. **Sitio web público** (`/`) — la página de la consulta de Natalia Anton Klickmann, Licenciada en Psicología. Presenta sus servicios y permite **solicitar una hora online**.
+2. **Software de gestión** (`/panel`) — privado, protegido con login. Agenda de citas, fichas de pacientes, notas de sesión, informes en PDF, recordatorios por WhatsApp, pagos y las solicitudes recibidas desde la web.
+
+Todo es responsivo (celular, tablet y computador) e instalable como app desde el navegador.
+
+## Cómo se conectan la web y el software
+
+Cuando un visitante completa el formulario de **"Reservar hora"** en la web pública, la solicitud se guarda en la base de datos y aparece automáticamente en la sección **Solicitudes** del panel, con un aviso en el inicio. Desde ahí Natalia puede responder por WhatsApp, crear la ficha del paciente con un clic y marcar el estado (nueva / contactada / agendada / descartada).
+
+## Personalizar el sitio web
+
+Los datos públicos (nombre, teléfono de WhatsApp, correo, ciudad, textos) se editan en un solo archivo: [`src/lib/site.ts`](src/lib/site.ts). **Importante:** cambia el `whatsappPhone` y el `email` por los reales antes de publicar.
+
+## Funcionalidades del panel
 
 - **Agenda**: calendario semanal con citas, estados (pendiente, confirmada, completada, cancelada, no asistió) y modalidad presencial/online.
 - **Pacientes**: ficha completa con datos personales, antecedentes y búsqueda por nombre o RUT.
@@ -56,14 +69,18 @@ La forma más fácil y gratuita es [Vercel](https://vercel.com):
 3. En **Environment Variables** agrega `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` con los mismos valores de `.env.local`.
 4. Deploy. Te dará una URL tipo `https://agenda-clinica.vercel.app`.
 
-En el celular, abre esa URL en Chrome/Safari y usa **"Agregar a pantalla de inicio"**: queda instalada como una app con su propio ícono.
+- La **web pública** quedará en la raíz (`https://...vercel.app/`).
+- El **panel privado** en `https://...vercel.app/panel` (botón discreto "Acceso profesional" en el sitio).
 
-## Primeros pasos dentro de la app
+En el celular, abre la URL del panel en Chrome/Safari y usa **"Agregar a pantalla de inicio"**: queda instalada como una app con su propio ícono.
+
+## Primeros pasos dentro del panel
 
 1. Ve a **Ajustes** y completa el nombre profesional, título y valor de la sesión (aparecen en los PDF y recordatorios).
-2. Crea pacientes en **Pacientes → Nuevo paciente**.
+2. Crea pacientes en **Pacientes → Nuevo paciente** (o desde una solicitud web en **Solicitudes**).
 3. Agenda citas en **Agenda → Nueva cita**.
 4. Desde la ficha del paciente puedes escribir notas de sesión, generar informes PDF y registrar pagos.
+5. Revisa las reservas que llegan desde la web en **Solicitudes**.
 
 ## Tecnología
 

@@ -5,10 +5,10 @@
 export const SITE = {
   professionalName: "Natalia Anton Klickmann",
   professionalTitle: "Licenciada en Psicología",
-  tagline: "Acompañamiento psicológico para adultos y adolescentes",
+  tagline: "Atención psicológica para adultos y adolescentes",
   // Teléfono en formato internacional sin signos, ej: 56912345678 (Chile +56 9 ...)
-  whatsappPhone: "56900000000",
-  email: "contacto@nataliaanton.cl",
+  whatsappPhone: "56942378394",
+  email: "antonklickmann.natalia@gmail.com",
   city: "Santiago, Chile",
   // Modalidades de atención
   modalities: ["Presencial", "Online por videollamada"],

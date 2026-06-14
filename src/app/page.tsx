@@ -7,9 +7,9 @@ import {
   HeartHandshake,
   Leaf,
   Lock,
+  Mail,
   MapPin,
   MessageCircle,
-  Phone,
   Quote,
   Sparkles,
   Users,
@@ -27,22 +27,22 @@ const SERVICES = [
   {
     icon: Brain,
     title: "Terapia individual para adultos",
-    text: "Un espacio confidencial para trabajar ansiedad, estrés, autoestima, duelos y procesos de cambio personal.",
+    text: "Un espacio confidencial para abordar ansiedad, estrés, autoestima, duelos y procesos de cambio personal.",
   },
   {
     icon: Sparkles,
     title: "Atención a adolescentes",
-    text: "Acompañamiento en etapas de cambio, manejo emocional, vínculos y desafíos propios de la adolescencia.",
+    text: "Acompañamiento en etapas de cambio, regulación emocional, vínculos y desafíos propios de la adolescencia.",
   },
   {
     icon: HeartHandshake,
     title: "Ansiedad y estado de ánimo",
-    text: "Herramientas concretas para comprender y regular la ansiedad, el ánimo bajo y los pensamientos repetitivos.",
+    text: "Herramientas para comprender y regular la ansiedad, el ánimo bajo y los pensamientos repetitivos.",
   },
   {
     icon: Leaf,
     title: "Bienestar y autoconocimiento",
-    text: "Procesos orientados a reconectar contigo, fortalecer tus recursos y avanzar hacia una vida más equilibrada.",
+    text: "Procesos orientados a fortalecer tus recursos, conocerte mejor y avanzar hacia una vida más equilibrada.",
   },
 ];
 
@@ -50,17 +50,17 @@ const STEPS = [
   {
     n: "01",
     title: "Solicita tu hora",
-    text: "Completa el formulario o escríbeme por WhatsApp. Coordinamos día, horario y modalidad.",
+    text: "Completa el formulario o escríbeme por WhatsApp. Coordinaremos día, horario y modalidad.",
   },
   {
     n: "02",
     title: "Primera sesión",
-    text: "Nos conocemos, conversamos sobre lo que te trae y definimos juntos los objetivos del proceso.",
+    text: "Conversamos sobre lo que te trae a consulta y definimos juntos los objetivos del proceso.",
   },
   {
     n: "03",
     title: "Acompañamiento",
-    text: "Avanzamos sesión a sesión a tu ritmo, con un enfoque cálido, respetuoso y basado en evidencia.",
+    text: "Avanzamos sesión a sesión a tu ritmo, con un enfoque cálido, respetuoso y confidencial.",
   },
 ];
 
@@ -130,7 +130,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-md text-lg text-zinc-600">
               Soy {SITE.professionalName}, {SITE.professionalTitle}. Te acompaño
-              en un proceso terapéutico cercano y confidencial, a tu propio
+              en un proceso psicológico cercano y confidencial, a tu propio
               ritmo.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -180,7 +180,7 @@ export default function HomePage() {
               <div className="mt-6 space-y-3">
                 {[
                   "Enfoque cálido y sin juicios",
-                  "Orientado a tus objetivos",
+                  "Proceso orientado a tus objetivos",
                   "Adultos y adolescentes",
                 ].map((t) => (
                   <div
@@ -216,7 +216,7 @@ export default function HomePage() {
             <p className="mt-4 text-zinc-600">
               Trabajo con adultos y adolescentes que atraviesan momentos de
               ansiedad, estrés, dificultades emocionales o simplemente buscan
-              conocerse mejor. Juntos identificamos tus recursos y construimos
+              conocerse mejor. Juntas y juntos identificamos tus recursos y construimos
               herramientas para tu bienestar.
             </p>
             <blockquote className="mt-6 border-l-4 border-teal-500 pl-4 text-zinc-700 italic">
@@ -328,7 +328,7 @@ export default function HomePage() {
                 className="flex items-center gap-3 text-teal-50 hover:text-white"
               >
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15">
-                  <Phone size={20} />
+                  <Mail size={20} />
                 </span>
                 <span className="text-sm">
                   Correo

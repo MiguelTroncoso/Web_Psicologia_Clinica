@@ -13,7 +13,7 @@ Cuando un visitante completa el formulario de **"Reservar hora"** en la web púb
 
 ## Personalizar el sitio web
 
-Los datos públicos (nombre, teléfono de WhatsApp, correo, ciudad, textos) se editan en un solo archivo: [`src/lib/site.ts`](src/lib/site.ts). **Importante:** cambia el `whatsappPhone` y el `email` por los reales antes de publicar.
+Los datos públicos (nombre, teléfono de WhatsApp, correo, ciudad, textos) se editan en un solo archivo: [`src/lib/site.ts`](src/lib/site.ts). El teléfono de WhatsApp y el correo de contacto ya quedaron configurados para la web pública.
 
 ## Funcionalidades del panel
 

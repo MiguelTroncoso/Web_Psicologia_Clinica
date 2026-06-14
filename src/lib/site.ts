@@ -8,7 +8,7 @@ export const SITE = {
   tagline: "Atención psicológica para adultos y adolescentes",
   // Teléfono en formato internacional sin signos, ej: 56912345678 (Chile +56 9 ...)
   whatsappPhone: "56942378394",
-  email: "antonklickmann.natalia@gmail.com",
+  email: "Ps.natalianton@gmail.com",
   city: "Santiago, Chile",
   // Modalidades de atención
   modalities: ["Presencial", "Online por videollamada"],

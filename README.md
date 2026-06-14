@@ -15,6 +15,8 @@ Cuando un visitante completa el formulario de **"Reservar hora"** en la web púb
 
 Los datos públicos (nombre, teléfono de WhatsApp, correo, ciudad, textos) se editan en un solo archivo: [`src/lib/site.ts`](src/lib/site.ts). El teléfono de WhatsApp y el correo de contacto ya quedaron configurados para la web pública.
 
+Para SEO, configura también `NEXT_PUBLIC_SITE_URL` con la URL pública final del sitio. Se usa para canonical, sitemap y robots.
+
 ## Funcionalidades del panel
 
 - **Agenda**: calendario semanal con citas, estados (pendiente, confirmada, completada, cancelada, no asistió) y modalidad presencial/online.
@@ -49,6 +51,7 @@ Los datos públicos (nombre, teléfono de WhatsApp, correo, ciudad, textos) se e
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://tuproyecto.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
+NEXT_PUBLIC_SITE_URL=https://tu-dominio.cl
 ```
 
 ### 4. Probar en tu computador
@@ -66,7 +69,7 @@ La forma más fácil y gratuita es [Vercel](https://vercel.com):
 
 1. Sube el proyecto a un repositorio de GitHub (privado).
 2. En Vercel: **Add New → Project → importa el repositorio**.
-3. En **Environment Variables** agrega `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY` con los mismos valores de `.env.local`.
+3. En **Environment Variables** agrega `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` y `NEXT_PUBLIC_SITE_URL` con los mismos valores de `.env.local`.
 4. Deploy. Te dará una URL tipo `https://agenda-clinica.vercel.app`.
 
 - La **web pública** quedará en la raíz (`https://...vercel.app/`).
